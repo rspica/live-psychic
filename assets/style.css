@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+h1 {
+	font: 2em  'Bungee Shade', cursive;
+	padding: 20px 0 35px;
+}
+
+.zoltar {
+	padding: 50px 0;
+}
+
+p {
+	font: 300 1.2em 'Montserrat', sans-serif;
+	padding-bottom: 10px;
+
+}
+
+.ball {
+	display: inline-block;
+
+}
+
+img {
+	width: 100%;
+	max-width: 500px;
+}

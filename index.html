@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Live Psychic</title>
+
+	<link rel="stylesheet" type="text/css" href="./assets/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="./assets/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
+</head>
+<body>
+
+    <!-- When we start playing the game, our HTML will be placed into this div. -->
+	<div id="game">
+		<h1>... Test your inner clairvoyant ...</h1>
+	</div>
+	<div class="ball">
+		<img  src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
+	</div>
+	<div class="zoltar">
+		<p>Guess what letter Zoltar is thinking!</p>
+		<p>Press any letter from a to z</p>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+
+		//	Track player's correct guesses
+
+			var wins = 0;
+
+		//	Track player's incorrect guesses
+
+			var losses = 0;
+
+		//	Track number of guesses remaining for player starting at 10
+
+			var playerGuess = 0;
+
+		//	track the actual letters selected by player
+
+
+		// Psychic's array of letters to choose from
+		// Computer randomly selects a letter from  A - Z for player to guess
+
+		var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+		
+		//  Create a random number from 0-25 (this is the index location of letter in array)
+		 
+			var psychSelect = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
+
+console.log(psychSelect);
+		
+		// player presses a key board letter A - Z. Key press to run the function 
+			document.onkeyup = function(event) {
+
+		// Determine which key was pressed
+			var playerGuess = event.key;
+
+console.log(playerGuess);
+
+		// Display players key selection
+
+			function keyPress() {
+				var kStroke = document.createTextNode(playerGuess);
+	    		document.body.appendChild(kStroke);
+			}
+
+
+		// Compair the player guess to the letter psychic is thinking
+		// Looping through compLtr array.
+			var arrayLength = psychicLtr.length;
+
+			for (var i = 0; i < arrayLength; i++)
+
+		// find letter match between psychic and player record wins, losses, guesses left and letters selected
+
+			if ( playerGuess !== psychSelect) {
+
+				losses = 1++;
+				//call function guessLeft();
+			}
+
+			else ( playerGuess === psychSelect) {
+
+				win = 1++;
+					//call function guessLeft();
+			}
+
+
+		// HTML to be displayed in div with class
+			var html = "<p>Press r, p or s to start playing!</p>" +
+			"<p>wins: " + wins + "</p>" +
+			"<p>losses: " + losses + "</p>" +
+			"<p>letters already guessed: " + playerGuess + "</p>";
+
+		// Injecting the HTML we just created into our div and updating the game information on our page.
+			document.querySelector("#game").innerHTML = html;
+
+        }
+      };
+
+	</script>
+	
+</body>
+</html>
