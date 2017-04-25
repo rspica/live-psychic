@@ -85,24 +85,33 @@ console.log(playerGuess);
 
 		// // Compair the player guess to the letter psychic is thinking
 		// // Looping through compLtr array.
-		// 	var arrayLength = psychicLtr.length;
 
-		// 	for (var i = 0; i < arrayLength; i++)
+			var arrayLength = psychicLtr.length;
+
+			for (var i = 0; i < arrayLength; i++)
 
 		// // find letter match between psychic and player record wins, losses, guesses left and letters selected
+			function compair()
 
-		// 	if ( playerGuess !== psychSelect) {
+			if ( playerGuess !== pyshLtr[psychSelect] ) {
 
-		// 		losses = 1++;
-		// 		//call function guessLeft();
-		// 	}
+				losses = 1++;
+		
+			}
 
-		// 	else ( playerGuess === psychSelect) {
+			else ( playerGuess === pyshLtr[psychSelect]) {
 
-		// 		win = 1++;
-		// 			//call function guessLeft();
-		// 	}
+				win = 1++;
+	 			//call function guessRemain();
+			}
 
+			//call function guessRemain();
+
+			function guessRemain() {
+
+				for (var i = 0; i <=pwd 10; i++)
+
+			}
 
 		// // HTML to be displayed in div with class
 		// 	var html = "<p>Press r, p or s to start playing!</p>" +
