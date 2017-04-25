@@ -75,10 +75,12 @@ console.log(playerGuess);
 
 		// Display players key selection
 
-		 	function keyPress() {
-				var kStroke = document.createTextNode(playerGuess);
-					document.body.appendChild(kStroke);
-		 	}
+			document.getElementById("kStroke").innerHTML = "playerGuess";
+
+		 	// function keyPress() {
+				// var kStroke = document.createTextNode(playerGuess);
+				// 	document.body.appendChild(kStroke);
+		 	// }
 
 
 		// // Compair the player guess to the letter psychic is thinking
