@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
 	<title>Live Psychic</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="./assets/reset.css"> 
 	<link rel="stylesheet" type="text/css" href="./assets/style.css">
@@ -13,14 +15,23 @@
     <!-- When we start playing the game, our HTML will be placed into this div. -->
 	<div id="game">
 		<h1>... Test your inner clairvoyant ...</h1>
+		<p>Guess the letter Zoltar is thinking!</p>
+
 	</div>
 	<div class="ball">
 		<img  src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
+			<p>Press any letter from a to z</p>
 	</div>
 	<div class="zoltar">
-		<p>Guess what letter Zoltar is thinking!</p>
-		<p>Press any letter from a to z</p>
+		<p id="currentPress">current guess:<span id="kStroke"></span></p>
 	</div>
+
+	<section class="playerResult">
+		<div class="result">wins: <span id="wins"></span></div>
+		<div class="result">losses: <span id="losses"></span></div>
+		<div class="result">letters guessed: <span id="kStroke"></span></div>
+		
+	</section>
 
 
 
@@ -64,44 +75,44 @@ console.log(playerGuess);
 
 		// Display players key selection
 
-			function keyPress() {
+		 	function keyPress() {
 				var kStroke = document.createTextNode(playerGuess);
-	    		document.body.appendChild(kStroke);
-			}
+					document.body.appendChild(kStroke);
+		 	}
 
 
-		// Compair the player guess to the letter psychic is thinking
-		// Looping through compLtr array.
-			var arrayLength = psychicLtr.length;
+		// // Compair the player guess to the letter psychic is thinking
+		// // Looping through compLtr array.
+		// 	var arrayLength = psychicLtr.length;
 
-			for (var i = 0; i < arrayLength; i++)
+		// 	for (var i = 0; i < arrayLength; i++)
 
-		// find letter match between psychic and player record wins, losses, guesses left and letters selected
+		// // find letter match between psychic and player record wins, losses, guesses left and letters selected
 
-			if ( playerGuess !== psychSelect) {
+		// 	if ( playerGuess !== psychSelect) {
 
-				losses = 1++;
-				//call function guessLeft();
-			}
+		// 		losses = 1++;
+		// 		//call function guessLeft();
+		// 	}
 
-			else ( playerGuess === psychSelect) {
+		// 	else ( playerGuess === psychSelect) {
 
-				win = 1++;
-					//call function guessLeft();
-			}
+		// 		win = 1++;
+		// 			//call function guessLeft();
+		// 	}
 
 
-		// HTML to be displayed in div with class
-			var html = "<p>Press r, p or s to start playing!</p>" +
-			"<p>wins: " + wins + "</p>" +
-			"<p>losses: " + losses + "</p>" +
-			"<p>letters already guessed: " + playerGuess + "</p>";
+		// // HTML to be displayed in div with class
+		// 	var html = "<p>Press r, p or s to start playing!</p>" +
+		// 	"<p>wins: " + wins + "</p>" +
+		// 	"<p>losses: " + losses + "</p>" +
+		// 	"<p>letters already guessed: " + playerGuess + "</p>";
 
-		// Injecting the HTML we just created into our div and updating the game information on our page.
-			document.querySelector("#game").innerHTML = html;
+		// // Injecting the HTML we just created into our div and updating the game information on our page.
+		// 	document.querySelector("#game").innerHTML = html;
 
-        }
-      };
+  //       }
+   //   };
 
 	</script>
 	
