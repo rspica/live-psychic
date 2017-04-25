@@ -30,6 +30,7 @@
 		<div class="result">wins: <span id="wins"></span></div>
 		<div class="result">losses: <span id="losses"></span></div>
 		<div class="result">letters guessed: <span id="kStroke"></span></div>
+		<div class="result">Chances remaining: <span id="remain"></span></div>
 		
 	</section>
 
@@ -83,15 +84,15 @@ console.log(playerGuess);
 		 	// }
 
 
-		// // Compair the player guess to the letter psychic is thinking
-		// // Looping through compLtr array.
+		// Compair the player guess to the letter psychic is thinking
+		// Looping through compLtr array.
 
 			var arrayLength = psychicLtr.length;
 
 			for (var i = 0; i < arrayLength; i++)
 
-		// // find letter match between psychic and player record wins, losses, guesses left and letters selected
-			function compair()
+		// find letter match between psychic and player record wins, losses, guesses left and letters selectedgit sta
+			function compair() {
 
 			if ( playerGuess !== pyshLtr[psychSelect] ) {
 
@@ -102,14 +103,19 @@ console.log(playerGuess);
 			else ( playerGuess === pyshLtr[psychSelect]) {
 
 				win = 1++;
-	 			//call function guessRemain();
+	 			
 			}
 
-			//call function guessRemain();
+
+			//function to count down remaining guess to 0;
 
 			function guessRemain() {
 
-				for (var i = 0; i <=pwd 10; i++)
+				for (var count = 0; count <= 10; count++) {
+
+					document.getElementById("remain").innerHTML = "count";
+
+				}
 
 			}
 
