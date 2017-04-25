@@ -40,24 +40,21 @@
 	<script type="text/javascript">
 
 		//	Track player's correct guesses
-
 			var wins = 0;
 
 		//	Track player's incorrect guesses
-
 			var losses = 0;
 
-		//	Track number of guesses remaining for player starting at 10
+		//	this stores the letters selected by player
+			//var playerGuess = [];
 
-			var playerGuess = 0;
-
-		//	track the actual letters selected by player
-
+		//	track the number of chances by player
+			var chance = 10;
 
 		// Psychic's array of letters to choose from
 		// Computer randomly selects a letter from  A - Z for player to guess
 
-		var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+			var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 		
 		//  Create a random number from 0-25 (this is the index location of letter in array)
@@ -65,18 +62,67 @@
 			var psychSelect = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
 
 console.log(psychSelect);
-		
-		// player presses a key board letter A - Z. Key press to run the function 
-			document.onkeyup = function(event) {
+console.log(psychicLtr[psychSelect]);
 
-		// Determine which key was pressed
-			var playerGuess = event.key;
+			function guessCheck() {
+				// Determine which key was pressed
+				document.onkeyup = function(event) {
+				
+					var playerGuess = event.key; //assigns playerGuess value of key press
 
 console.log(playerGuess);
+					
+					if (playerGuess === psychicLtr[psychSelect]) {
+						// say congratulations
+						wins++; // increments incorrect guesses
+console.log("winner");
+					}
+
+					else if ((playerGuess !== psychicLtr[psychSelect]) && (chance > 0)) {
+						// guess again you have x guess left
+						losses++; //increments correct guesses
+						chance = chance - 1;
+console.log("guess again you have " + chance + " guesses left");
+					}
+
+					//	Track number of guesses remaining for player
+					if (chance = 0) {
+						// say game over
+console.log("game over");
+					}
+				}
+			}
+
+guessCheck();
+
+		
+		// Compair the player guess to the letter psychic is thinking
+
+
+
+
+
+/*			//	Track number of guesses remaining for player starting at 10 count-down to 0
+			for (var count = 10; count >= 0; count--) { 
+// player presses a key board letter A - Z. Key press to run the function 
+			document.onkeyup = function(event) {
+				// Determine which key was pressed
+				playerGuess = event.key; //assigns playerGuess the value of key press
+console.log(playerGuess);
+					}
+
+console.log("count down " + count);
+
+
+			}
+
+				// find letter match between psychic and player record wins, losses, guesses left and letters selected.
+
+							//	document.getElementById("remain").innerHTML = count; // records guess total to web page
 
 		// Display players key selection
 
-			document.getElementById("kStroke").innerHTML = "playerGuess";
+			//document.getElementById("kStroke").innerHTML = "playerGuess";
 
 		 	// function keyPress() {
 				// var kStroke = document.createTextNode(playerGuess);
@@ -84,40 +130,21 @@ console.log(playerGuess);
 		 	// }
 
 
-		// Compair the player guess to the letter psychic is thinking
+		
 		// Looping through compLtr array.
 
-			var arrayLength = psychicLtr.length;
-
-			for (var i = 0; i < arrayLength; i++)
-
-		// find letter match between psychic and player record wins, losses, guesses left and letters selectedgit sta
-			function compair() {
-
-			if ( playerGuess !== pyshLtr[psychSelect] ) {
-
-				losses = 1++;
-		
-			}
-
-			else ( playerGuess === pyshLtr[psychSelect]) {
-
-				win = 1++;
-	 			
-			}
+		/*	var arrayLength = psychicLtr.length;
+			for (var i = 0; i < arrayLength; i++)*/
 
 
-			//function to count down remaining guess to 0;
+			
+			
 
-			function guessRemain() {
+			
 
-				for (var count = 10; count <= 0; count--) {
 
-					document.getElementById("remain").innerHTML = "count";
 
-				}
-
-			}
+	
 
 		// // HTML to be displayed in div with class
 		// 	var html = "<p>Press r, p or s to start playing!</p>" +
