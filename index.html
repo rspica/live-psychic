@@ -1,164 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-
-	<title>Live Psychic</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" type="text/css" href="./assets/reset.css"> 
-	<link rel="stylesheet" type="text/css" href="./assets/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Live Psychic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./assets/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
 </head>
+
 <body>
-
     <!-- When we start playing the game, our HTML will be placed into this div. -->
-	<div id="game">
-		<h1>... Test your inner clairvoyant ...</h1>
-		<p>Guess the letter Zoltar is thinking!</p>
+    <div id="game">
+        <h1>... Test your inner clairvoyant ...</h1>
+        <p>Guess the letter Zoltar is thinking!</p>
+    </div>
+    <div class="ball">
+        <img src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
+        <p>Press any letter from a to z</p>
+    </div>
+    <div class="zoltar">
+        <p id="currentPress">current guess:<span id="kStroke"></span></p>
+    </div>
+    <section class="playerResult">
+        <div class="result">wins: <span id="wins"></span></div>
+        <div class="result">losses: <span id="losses"></span></div>
+        <div class="result">letters guessed: <span id="kStroke"></span></div>
+        <div class="result">Chances remaining: <span id="remain"></span></div>
+    </section>
+    <script type="text/javascript">
+// =======================================================
+// GLOBAL VARIABLES
+// =======================================================
 
-	</div>
-	<div class="ball">
-		<img  src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
-			<p>Press any letter from a to z</p>
-	</div>
-	<div class="zoltar">
-		<p id="currentPress">current guess:<span id="kStroke"></span></p>
-	</div>
+    //	Track player's correct guesses
+    var winCounter = 0;
 
-	<section class="playerResult">
-		<div class="result">wins: <span id="wins"></span></div>
-		<div class="result">losses: <span id="losses"></span></div>
-		<div class="result">letters guessed: <span id="kStroke"></span></div>
-		<div class="result">Chances remaining: <span id="remain"></span></div>
-		
-	</section>
+    //	Track player's incorrect guesses
+    var lossCounter = 0;
 
+    //	this stores the letters selected by player
+    //var playerGuess = [];
 
+    //	track the number of chances by player
+    var chance = 10;
 
+    var remain = document.getElementById("remain");
+    console.log(remain);
 
-	<script type="text/javascript">
+    var losses = document.getElementById("losses");
+    console.log(losses)
 
-		//	Track player's correct guesses
-			var wins = 0;
+    losses.innerHTML = lossCounter;
+    remain.innerHTML = chance;
 
-		//	Track player's incorrect guesses
-			var losses = 0;
+    // Psychic's array of letters to choose from
+    // Computer randomly selects a letter from  A - Z for player to guess
 
-		//	this stores the letters selected by player
-			//var playerGuess = [];
-
-		//	track the number of chances by player
-			var chance = 10;
-
-		// Psychic's array of letters to choose from
-		// Computer randomly selects a letter from  A - Z for player to guess
-
-			var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-		
-		//  Create a random number from 0-25 (this is the index location of letter in array)
-		 
-			var psychSelect = Math.floor(Math.random() * (25 - 0 + 1)) + 0;
-
-console.log(psychSelect);
-console.log(psychicLtr[psychSelect]);
-
-			function guessCheck() {
-				// Determine which key was pressed
-				document.onkeyup = function(event) {
-				
-					var playerGuess = event.key; //assigns playerGuess value of key press
-
-console.log(playerGuess);
-					
-					if (playerGuess === psychicLtr[psychSelect]) {
-						// say congratulations
-						wins++; // increments incorrect guesses
-console.log("winner");
-					}
-
-					else if ((playerGuess !== psychicLtr[psychSelect]) && (chance > 0)) {
-						// guess again you have x guess left
-						losses++; //increments correct guesses
-						chance = chance - 1;
-console.log("guess again you have " + chance + " guesses left");
-					}
-
-					//	Track number of guesses remaining for player
-					if (chance = 0) {
-						// say game over
-console.log("game over");
-					}
-				}
-			}
-
-guessCheck();
-
-		
-		// Compair the player guess to the letter psychic is thinking
+    var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
+    //  Create a random number from 0-25 (this is the index location of letter in array)
+
+    var psychSelect = Math.floor(Math.random() * 26);
+
+    console.log(psychSelect);
+    console.log(psychicLtr[psychSelect]);
+
+// =======================================================
+// GLOBAL FUNCTIONS
+// =======================================================
 
 
+    document.addEventListener("keyup", function(event) {
+        console.log(event)
+        console.log(event.key)
+        chance--;
+        remain.innerHTML = chance;
+        console.log(chance)
 
-/*			//	Track number of guesses remaining for player starting at 10 count-down to 0
-			for (var count = 10; count >= 0; count--) { 
-// player presses a key board letter A - Z. Key press to run the function 
-			document.onkeyup = function(event) {
-				// Determine which key was pressed
-				playerGuess = event.key; //assigns playerGuess the value of key press
-console.log(playerGuess);
-					}
+        if (chance === 0) {
+            userLost();
+        }
+        if (event.key == psychicLtr[psychSelect]) {
+            console.log("congratulations!")
+        }
+    });
 
-console.log("count down " + count);
+    function userLost(){
+    	chance = 10;
+    	remain.innerHTML = chance;
+    	lossCounter++;
+    	losses.innerHTML = lossCounter;
 
+    }
 
-			}
-
-				// find letter match between psychic and player record wins, losses, guesses left and letters selected.
-
-							//	document.getElementById("remain").innerHTML = count; // records guess total to web page
-
-		// Display players key selection
-
-			//document.getElementById("kStroke").innerHTML = "playerGuess";
-
-		 	// function keyPress() {
-				// var kStroke = document.createTextNode(playerGuess);
-				// 	document.body.appendChild(kStroke);
-		 	// }
+    function guessCheck() {
+        // Determine which key was pressed
 
 
-		
-		// Looping through compLtr array.
+        document.onkeyup = function(event) {
 
-		/*	var arrayLength = psychicLtr.length;
-			for (var i = 0; i < arrayLength; i++)*/
+            for (var i = 10; i < 10; i -= 1) {
+
+                var playerGuess = event.key; //assigns playerGuess value of key press
+
+                console.log(playerGuess);
+
+                if (playerGuess === psychicLtr[psychSelect]) {
+                    // say congratulations
+                    wins++; // increments incorrect guesses
+                    console.log("winner");
+                } else if ((playerGuess !== psychicLtr[psychSelect]) && (chance > 0)) {
+                    // guess again you have x guess left
+                    losses++; //increments correct guesses
+                    chance = chance - 1;
+                    console.log("guess again you have " + chance + " guesses left");
+                }
+
+                //	Track number of guesses remaining for player
+                if (chance = 0) {
+                    // say game over
+                    console.log("game over");
+                }
+            }
+        }
+    }
+
+    // guessCheck();
 
 
-			
-			
-
-			
+    // Compair the player guess to the letter psychic is thinking
 
 
 
-	
 
-		// // HTML to be displayed in div with class
-		// 	var html = "<p>Press r, p or s to start playing!</p>" +
-		// 	"<p>wins: " + wins + "</p>" +
-		// 	"<p>losses: " + losses + "</p>" +
-		// 	"<p>letters already guessed: " + playerGuess + "</p>";
 
-		// // Injecting the HTML we just created into our div and updating the game information on our page.
-		// 	document.querySelector("#game").innerHTML = html;
+    /*			//	Track number of guesses remaining for player starting at 10 count-down to 0
+    			for (var count = 10; count >= 0; count--) { 
+    // player presses a key board letter A - Z. Key press to run the function 
+    			document.onkeyup = function(event) {
+    				// Determine which key was pressed
+    				playerGuess = event.key; //assigns playerGuess the value of key press
+    console.log(playerGuess);
+    					}
 
-  //       }
-   //   };
+    console.log("count down " + count);
 
-	</script>
-	
+
+    			}
+
+    				// find letter match between psychic and player record wins, losses, guesses left and letters selected.
+
+    							//	document.getElementById("remain").innerHTML = count; // records guess total to web page
+
+    		// Display players key selection
+
+    			//document.getElementById("kStroke").innerHTML = "playerGuess";
+
+    		 	// function keyPress() {
+    				// var kStroke = document.createTextNode(playerGuess);
+    				// 	document.body.appendChild(kStroke);
+    		 	// }
+
+
+    		
+    		// Looping through compLtr array.
+
+    		/*	var arrayLength = psychicLtr.length;
+    			for (var i = 0; i < arrayLength; i++)*/
+
+
+
+
+
+
+
+
+
+
+
+    // // HTML to be displayed in div with class
+    // 	var html = "<p>Press r, p or s to start playing!</p>" +
+    // 	"<p>wins: " + wins + "</p>" +
+    // 	"<p>losses: " + losses + "</p>" +
+    // 	"<p>letters already guessed: " + playerGuess + "</p>";
+
+    // // Injecting the HTML we just created into our div and updating the game information on our page.
+    // 	document.querySelector("#game").innerHTML = html;
+
+    //       }
+    //   };
+    </script>
 </body>
+
 </html>
