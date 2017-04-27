@@ -30,9 +30,6 @@
         <p id="gameOutCome"></p>
         <p>Press any letter from a to z</p>
     </div>
-<!--     <div class="zoltar">
-        <p id="currentPress">current guess: <span id="currentGuess"></span></p>
-    </div> -->
     <div class="container playerResult">
             
         <div class="row">
@@ -85,8 +82,8 @@
     // on screen display for player winss
     var wins = document.getElementById("wins");
 
-    // on screen display for letters selected
-    var pastGuess = document.getElementById("letterPast");
+    // on screen display for all letters selected
+    var pastGuess = document.getElementById("pastGuess");
     console.log(pastGuess)
 
     // on screen display for player game outcome: "winner" or "Game Over"
@@ -133,7 +130,10 @@
         }
 
         if (chance !== 0) {
-            guessCheck(keystroke);
+//         playerGuess[playerGuess.length] = keyStroke
+//          playerGuess.push(keyStroke);
+//            pastGuess.innerHTML = playerGuess;
+            guessCheck(keyStroke);
         }
 
         if (event.key === psychicLtr[psychSelect]) {
@@ -154,7 +154,7 @@
 
 
 
-    function guessCheck(keyStroke) {
+        function guessCheck(n) {
         //checks if current letter had been previously selected  
         // if (event.key === keyStroke) {
         //     //alert "you have selected this key already!" --tbd
@@ -163,82 +163,21 @@
         //     gameOutCome.innerHTML = "Letter previously selected"
         // }
 
-            keyStroke.push(playerGuess);
+//--------------------------------------------------------
+          playerGuess[playerGuess.length] = keyStroke //keyStroke is not defined here??
+//          playerGuess.push(keyStroke);
+       console.log("playerGuess[playerGuess.length] = keyStroke " + playerGuess)
+          pastGuess.innerHTML = playerGuess;
+       console.log(playerGuess)
+//---------------------------------------------------------
+        console.log("arrived in gessCheck function ")
+        console.log("gessCheck function event.key " + event.key)
+ //           keyStroke.push(playerGuess);
             pastGuess.innerHTML = playerGuess;
     }
   
 
 
-  /*      document.onkeyup = function(event) {
-
-            for (var i = 10; i < 10; i -= 1) {
-
-                var playerGuess = event.key; //assigns playerGuess value of key press
-
-                console.log(playerGuess);
-
-                if (playerGuess === psychicLtr[psychSelect]) {
-                    // say congratulations
-                    wins++; // increments incorrect guesses
-                    console.log("winner");
-                } else if ((playerGuess !== psychicLtr[psychSelect]) && (chance > 0)) {
-                    // guess again you have x guess left
-                    losses++; //increments correct guesses
-                    chance = chance - 1;
-                    console.log("guess again you have " + chance + " guesses left");
-                }
-
-                //	Track number of guesses remaining for player
-                if (chance = 0) {
-                    // say game over
-                    console.log("game over");
-                }
-            }
-        }
-    }
-
-    // guessCheck();
-
-
-    // Compair the player guess to the letter psychic is thinking
-
-
-
-
-
-    /*			//	Track number of guesses remaining for player starting at 10 count-down to 0
-    			for (var count = 10; count >= 0; count--) { 
-    // player presses a key board letter A - Z. Key press to run the function 
-    			document.onkeyup = function(event) {
-    				// Determine which key was pressed
-    				playerGuess = event.key; //assigns playerGuess the value of key press
-    console.log(playerGuess);
-    					}
-
-    console.log("count down " + count);
-
-
-    			}
-
-    				// find letter match between psychic and player record wins, losses, guesses left and letters selected.
-
-    							//	document.getElementById("remain").innerHTML = count; // records guess total to web page
-
-    		// Display players key selection
-
-    			//document.getElementById("kStroke").innerHTML = "playerGuess";
-
-    		 	// function keyPress() {
-    				// var kStroke = document.createTextNode(playerGuess);
-    				// 	document.body.appendChild(kStroke);
-    		 	// }
-
-
-    		
-    		// Looping through compLtr array.
-
-    		/*	var arrayLength = psychicLtr.length;
-    			for (var i = 0; i < arrayLength; i++)*/
 
 
 
@@ -250,17 +189,7 @@
 
 
 
-    // // HTML to be displayed in div with class
-    // 	var html = "<p>Press r, p or s to start playing!</p>" +
-    // 	"<p>wins: " + wins + "</p>" +
-    // 	"<p>losses: " + losses + "</p>" +
-    // 	"<p>letters already guessed: " + playerGuess + "</p>";
 
-    // // Injecting the HTML we just created into our div and updating the game information on our page.
-    // 	document.querySelector("#game").innerHTML = html;
-
-    //       }
-    //   };
     </script>
 </body>
 
