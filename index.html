@@ -5,9 +5,18 @@
     <meta charset="UTF-8">
     <title>Live Psychic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Botstrap Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Bootstrap Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="./assets/reset.css">
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
 </head>
 
 <body>
@@ -18,17 +27,29 @@
     </div>
     <div class="ball">
         <img src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
+        <p id="gameOutCome"></p>
         <p>Press any letter from a to z</p>
     </div>
-    <div class="zoltar">
-        <p id="currentPress">current guess:<span id="kStroke"></span></p>
-    </div>
-    <section class="playerResult">
-        <div class="result">wins: <span id="wins"></span></div>
-        <div class="result">losses: <span id="losses"></span></div>
-        <div class="result">letters guessed: <span id="kStroke"></span></div>
-        <div class="result">Chances remaining: <span id="remain"></span></div>
-    </section>
+<!--     <div class="zoltar">
+        <p id="currentPress">current guess: <span id="currentGuess"></span></p>
+    </div> -->
+    <div class="container playerResult">
+            
+        <div class="row">
+            <p class="col-md-12 result" id="currentPress">current guess: <span id="currentGuess"></span></p>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-4 result">letters guessed: <span id="pastGuess"></span></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-7 result">chances remaining: <span id="remain"></span></div>
+            <div class="col-xs-3 col-md-2 result">wins: <span id="wins"></span></div>
+            <div class="col-xs-3 col-md-2 result">losses: <span id="losses"></span></div>
+        </div>
+
+    </div> <!-- end stats container -->
+
     <script type="text/javascript">
 // =======================================================
 // GLOBAL VARIABLES
@@ -41,19 +62,43 @@
     var lossCounter = 0;
 
     //	this stores the letters selected by player
-    //var playerGuess = [];
+    var playerGuess = [];
 
     //	track the number of chances by player
     var chance = 10;
 
+
+
+
+//-------------------------------------------------------
+//----------------  **Get Variables**  ------------------
+//-------------------------------------------------------
+
+    // variable for on screen display for number of guessed left (count-down)
     var remain = document.getElementById("remain");
     console.log(remain);
 
+    // on screen display for player losses
     var losses = document.getElementById("losses");
     console.log(losses)
 
-    losses.innerHTML = lossCounter;
-    remain.innerHTML = chance;
+    // on screen display for player winss
+    var wins = document.getElementById("wins");
+
+    // on screen display for letters selected
+    var pastGuess = document.getElementById("letterPast");
+    console.log(pastGuess)
+
+    // on screen display for player game outcome: "winner" or "Game Over"
+    var currentGuess = document.getElementById("currentGuess");
+
+    // on screen display for player game outcome: "winner" or "Game Over"
+    var gameOutCome = document.getElementById("gameOutCome")
+
+ //   remain.innerHTML = chance;
+  //  losses.innerHTML = lossCounter;
+ //   keyStroke.innerHTML = playerGuess[];
+ 
 
     // Psychic's array of letters to choose from
     // Computer randomly selects a letter from  A - Z for player to guess
@@ -61,46 +106,70 @@
     var psychicLtr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
-    //  Create a random number from 0-25 (this is the index location of letter in array)
+    //  Create a random number from 0-25 (for the location of letter in the array psychicLtr)
 
     var psychSelect = Math.floor(Math.random() * 26);
 
-    console.log(psychSelect);
-    console.log(psychicLtr[psychSelect]);
+    console.log("psychic number selection " + psychSelect);
+    console.log("psychic letter selection " + psychicLtr[psychSelect]);
 
 // =======================================================
 // GLOBAL FUNCTIONS
 // =======================================================
 
-
-    document.addEventListener("keyup", function(event) {
-        console.log(event)
-        console.log(event.key)
+    // event function that listens for player's letter choice and writes number of chances player has made and evaluates true or flase on player guess
+        document.addEventListener("keyup", function(event) {
+            console.log(event);
+        var keyStroke = event.key;
         chance--;
         remain.innerHTML = chance;
-        console.log(chance)
+                console.log("chances remaining: " + chance);
+        currentGuess.innerHTML = keyStroke;
+                console.log("players current key pressed " + keyStroke) // var keyStroke = (event.key); 
+
 
         if (chance === 0) {
             userLost();
         }
-        if (event.key == psychicLtr[psychSelect]) {
-            console.log("congratulations!")
+
+        if (chance !== 0) {
+            guessCheck(keystroke);
         }
+
+        if (event.key === psychicLtr[psychSelect]) {
+                console.log("congratulations!")
+            gameOutCome.innerHTML = "WINNER!"
+        }
+
     });
 
-    function userLost(){
-    	chance = 10;
-    	remain.innerHTML = chance;
-    	lossCounter++;
-    	losses.innerHTML = lossCounter;
-
+        function userLost(){
+            chance = 10;
+            remain.innerHTML = chance;
+            lossCounter++;
+            losses.innerHTML = lossCounter;
+            gameOutCome.innerHTML = "GAME OVER!"
     }
 
-    function guessCheck() {
-        // Determine which key was pressed
 
 
-        document.onkeyup = function(event) {
+
+    function guessCheck(keyStroke) {
+        //checks if current letter had been previously selected  
+        // if (event.key === keyStroke) {
+        //     //alert "you have selected this key already!" --tbd
+        //     guessedLetter = document.createElement('div');
+        //     guessedLetter.setAttribute('class', 'guessedLtr');
+        //     gameOutCome.innerHTML = "Letter previously selected"
+        // }
+
+            keyStroke.push(playerGuess);
+            pastGuess.innerHTML = playerGuess;
+    }
+  
+
+
+  /*      document.onkeyup = function(event) {
 
             for (var i = 10; i < 10; i -= 1) {
 
