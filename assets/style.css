@@ -13,7 +13,6 @@ h1 {
 
 p {
 	font: 300 .7em 'Montserrat', sans-serif;
-	padding-bottom: 10px;
 	color: rgb(255, 255, 255);
 }
 
@@ -55,7 +54,7 @@ img {
 .playerResult {
 	width: 90%;
 	max-width: 725px;
-	margin: 50px auto 0;
+	margin: 30px auto 0;
 	padding: 15px 0 30px 25px;
 	background: rgba(255, 255, 255, .3);
 	border-radius: 5px;

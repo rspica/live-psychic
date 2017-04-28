@@ -23,12 +23,12 @@
     <!-- When we start playing the game, our HTML will be placed into this div. -->
     <div id="game">
         <h1>... Test your inner clairvoyant ...</h1>
-        <p>Guess the letter Zoltar is thinking!</p>
     </div>
     <div class="ball">
         <img src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
         <p id="gameOutCome"></p>
-        <p>Press any letter from a to z</p>
+        <p>Guess the letter Zoltar is thinking!</p>
+        <p >Press any letter from a to z to start</p>
     </div>
     <div class="container playerResult">
             
@@ -154,38 +154,60 @@
 
 
 
-        function guessCheck(n) {
+        function guessCheck(keyStroke) {
         //checks if current letter had been previously selected  
-        // if (event.key === keyStroke) {
+        //      if (playerGuess === keyStroke) {
+        //      letter match is t/f
+        //      letter duplicate is t/f
+
+        //      loop through playerGuess array to compair keystroke for match 
+        //      match = true   no run
+
+        //      loop through psychicLTR array compair to keyStroke for match a-z
+        //      match = false no run
+
+        //      if conditions to run: 
+        //      run if a-z match = true and playerGuess match false run game 
+
+
         //     //alert "you have selected this key already!" --tbd
-        //     guessedLetter = document.createElement('div');
-        //     guessedLetter.setAttribute('class', 'guessedLtr');
+
         //     gameOutCome.innerHTML = "Letter previously selected"
         // }
 
-//--------------------------------------------------------
-          playerGuess[playerGuess.length] = keyStroke //keyStroke is not defined here??
-//          playerGuess.push(keyStroke);
+  
+          playerGuess.push(key);
        console.log("playerGuess[playerGuess.length] = keyStroke " + playerGuess)
           pastGuess.innerHTML = playerGuess;
        console.log(playerGuess)
-//---------------------------------------------------------
-        console.log("arrived in gessCheck function ")
-        console.log("gessCheck function event.key " + event.key)
- //           keyStroke.push(playerGuess);
-            pastGuess.innerHTML = playerGuess;
+
     }
   
 
 
 
 
+// game reset
+/* function initNewGame(){
+    // setup game vars and cards
+}
+
+function endGame(){
+    // clean game vars and remove cards
+}
+
+function newOrReset(){
+    endGame();
+    initNewGame();
+}   
+
+*/
 
 
 
 
-
-
+        //     guessedLetter = document.createElement('div');
+        //     guessedLetter.setAttribute('class', 'guessedLtr');
 
 
 
