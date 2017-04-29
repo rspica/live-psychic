@@ -69,6 +69,7 @@ img {
 	text-align: left;
 	font: 300 .8em 'Montserrat', sans-serif;
 	padding-bottom: 20px;
+	padding-right: 0;
 	color: rgb(0, 0, 0);
 }
 
@@ -84,9 +85,35 @@ img {
 	border-radius: 5px;
 }
 
-.letterHold {
+.playerBtn{
+	width: 90%;
+	max-width: 725px;
+	margin: 10px auto 0;
+	padding: 15px 0 30px;
 
 }
+
+button {
+	float: right;
+	font: 300 .8em 'Montserrat', sans-serif;
+	background: rgba(255, 255, 255, .3);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 5px;
+	transition: color 1s ease-out .25s, background .2s ease-out .25s, font-size .05s ease-out .25s;
+}
+
+button:hover {
+	background: rgba(255, 255, 255, .6);
+	color: rgb(0, 0, 0)
+}
+
+button:focus{
+	outline: none;
+}
+
+  
 
 @media screen and (max-width: 899px) and (min-width: 500px) {
 
