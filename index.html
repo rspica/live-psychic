@@ -12,17 +12,21 @@
 <!-- Bootstrap Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- google fonts -->
+<!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
 
+
+<!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./assets/reset.css">
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/font-awesome.css">
+
 </head>
 
 <body>
     <!-- When we start playing the game, our HTML will be placed into this div. -->
     <div id="game">
-        <h1>... Test your inner clairvoyant ...</h1>
+        <h1>... feel your inner clairvoyant ...</h1>
     </div>
     <div class="ball">
         <img src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
@@ -36,18 +40,34 @@
             <p class="col-md-12 result" id="currentPress">current guess: <span id="currentGuess"></span></p>
         </div>
         <div class="row">
-            <div class="col-xs-6 col-md-4 result">letters guessed: <span id="pastGuess"></span></div>
+            <div class="col-xs-12 col-md-4 result">letters guessed: <span id="pastGuess"></span></div>
         </div>
 
         <div class="row">
-            <div class="col-xs-6 col-md-7 result">chances remaining: <span id="remain"></span></div>
-            <div class="col-xs-3 col-md-2 result">wins: <span id="wins"></span></div>
-            <div class="col-xs-3 col-md-2 result">losses: <span id="losses"></span></div>
+            <div class="col-xs-6 col-md-6 result">chances remaining: <span id="remain"></span></div>
+            <div class="col-xs-3 col-md-3 result">wins: <span id="wins"></span></div>
+            <div class="col-xs-3 col-md-3 result">losses: <span id="losses"></span></div>
         </div>
 
     </div> <!-- end stats container -->
 
+    <div class="container playerBtn"><!-- games controls -->
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <button id="gameStart" type="button"><i class="fa fa-handshake-o" aria-hidden="true"></i> Get Guessing</button>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <button id="gameReset" type="reset" value="Reset"><i class="fa fa-refresh" aria-hidden="true"></i> Try again</button>
+            </div>
+        </div>
+    </div>
+    </body>
+
+ <script src="https://use.fontawesome.com/deca8cd297.js"></script>
     <script type="text/javascript">
+
+
+
 // =======================================================
 // GLOBAL VARIABLES
 // =======================================================
@@ -71,32 +91,36 @@
 //----------------  **Get Variables**  ------------------
 //-------------------------------------------------------
 
-    // variable for on screen display for number of guessed left (count-down)
+    // variable to grab the on screen display for number of guessed left (count-down)
     var remain = document.getElementById("remain");
     console.log(remain);
 
-    // on screen display for player losses
+    // variable to grab the on screen display for player losses
     var losses = document.getElementById("losses");
     console.log(losses)
 
-    // on screen display for player winss
+    // variable to grab the on screen display for player winss
     var wins = document.getElementById("wins");
 
-    // on screen display for all letters selected
+    // variable to grab the on screen display for all letters selected
     var pastGuess = document.getElementById("pastGuess");
     console.log(pastGuess)
 
-    // on screen display for player game outcome: "winner" or "Game Over"
+    // variable to grabon screen display for player game outcome: "winner" or "Game Over"
     var currentGuess = document.getElementById("currentGuess");
 
-    // on screen display for player game outcome: "winner" or "Game Over"
+    // variable to grab the on screen display for player game outcome: "winner" or "Game Over"
     var gameOutCome = document.getElementById("gameOutCome")
 
- //   remain.innerHTML = chance;
-  //  losses.innerHTML = lossCounter;
- //   keyStroke.innerHTML = playerGuess[];
- 
+    // variable to grab the on screen start button
+    var gameStart = document.getElementById("gameStart");
 
+console.log(gameStart);
+
+    // variable to grab the on screen reset button
+    var gameReset = document.getElementById("gameReset");
+
+console.log(gameReset);
     // Psychic's array of letters to choose from
     // Computer randomly selects a letter from  A - Z for player to guess
 
@@ -110,14 +134,23 @@
     console.log("psychic number selection " + psychSelect);
     console.log("psychic letter selection " + psychicLtr[psychSelect]);
 
+
+
 // =======================================================
 // GLOBAL FUNCTIONS
 // =======================================================
+
+
+
+
 
     // event function that listens for player's letter choice and writes number of chances player has made and evaluates true or flase on player guess
         document.addEventListener("keyup", function(event) {
             console.log(event);
         var keyStroke = event.key;
+
+ //       guessCheck(keystroke, playerGuess);
+
         chance--;
         remain.innerHTML = chance;
                 console.log("chances remaining: " + chance);
@@ -130,10 +163,10 @@
         }
 
         if (chance !== 0) {
-//         playerGuess[playerGuess.length] = keyStroke
+//          playerGuess[playerGuess.length] = keyStroke
 //          playerGuess.push(keyStroke);
-//            pastGuess.innerHTML = playerGuess;
-            guessCheck(keyStroke);
+//          pastGuess.innerHTML = playerGuess;
+            guessTracker(keyStroke);
         }
 
         if (event.key === psychicLtr[psychSelect]) {
@@ -143,6 +176,9 @@
 
     });
 
+
+   // function userLost counts and records total number of valid turns player makes max=10 turns
+
         function userLost(){
             chance = 10;
             remain.innerHTML = chance;
@@ -151,37 +187,62 @@
             gameOutCome.innerHTML = "GAME OVER!"
     }
 
+   // function guessTracker holds and prints to screen all valid player guesses
 
+        function guessTracker(keyStroke) {
+            playerGuess.push(keyStroke);
+            var keyTrack = playerGuess;
+            keyTrack = keyTrack.toString()
+            keyTrack = keyTrack.replace(/,/gi, ", ");
+       console.log("playerGuess[playerGuess.length] = keyStroke " + playerGuess)
+            pastGuess.innerHTML = keyTrack;
+       console.log(playerGuess)
 
+        }
 
-        function guessCheck(keyStroke) {
-        //checks if current letter had been previously selected  
+   // function guessCheck validates player guess for alpha characters a-z and no duplicate guesses
+
+        function guessCheck(key, Guess) {
+        //checks if current letter had been previously selected 
+        console.log("inside guessChecker " + key + Guess)
+        //      var run and var keyCheck set the values to run the game 
+                var run = true
+                var keyCheck = false
         //      if (playerGuess === keyStroke) {
-        //      letter match is t/f
+        //      playerNow === true
         //      letter duplicate is t/f
+
 
         //      loop through playerGuess array to compair keystroke for match 
         //      match = true   no run
-
+                for (var i = 0; i <= playerGuess.length; i++) {
+                    if (playerGuess[i] === keyStroke) {
+                        var keyCheck = true;
+                        alert("Nope, chose that already");
+                    }
+                
         //      loop through psychicLTR array compair to keyStroke for match a-z
         //      match = false no run
-
+                for (var b = 0; b <= psychicLtr.length; b++ ) {
+                    if (playerGuess[i] === psychicLtr[b])
+                        run = true
+                        alert("All signs point to N-O-P-E ! Just select a letter a though z");
+                    }
+                }
+            }
         //      if conditions to run: 
         //      run if a-z match = true and playerGuess match false run game 
-
+                
 
         //     //alert "you have selected this key already!" --tbd
 
         //     gameOutCome.innerHTML = "Letter previously selected"
-        // }
+              
 
   
-          playerGuess.push(key);
-       console.log("playerGuess[playerGuess.length] = keyStroke " + playerGuess)
-          pastGuess.innerHTML = playerGuess;
-       console.log(playerGuess)
 
-    }
+
+
   
 
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Live Psychic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Botstrap Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Bootstrap Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,semi-bold|Bungee+Outline|Bungee+Shade" rel="stylesheet">
+
+
+<!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+ <!--   <link rel="stylesheet" type="text/css" href="./assets/font-awesome.css">. -->
+
+</head>
+
+<body>
+    <!-- When we start playing the game, our HTML will be placed into this div. -->
+    <div id="game">
+        <h1>... Number 2 ...</h1>
+    </div>
+    <div class="ball">
+        <img src="./images/giphy.gif" alt="picture of crystal ball bouncing" />
+        <p id="gameOutCome"></p>
+        <p>Guess the letter Zoltar is thinking!</p>
+        <p >Press any letter from a to z to start</p>
+    </div>
+    <div class="container playerResult">
+            
+        <div class="row">
+            <p class="col-md-12 result" id="currentPress">current guess: <span id="currentGuess"></span></p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4 result">letters guessed: <span id="pastGuess"></span></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-6 result">chances remaining: <span id="remain"></span></div>
+            <div class="col-xs-3 col-md-3 result">wins: <span id="wins"></span></div>
+            <div class="col-xs-3 col-md-3 result">losses: <span id="losses"></span></div>
+        </div>
+
+    </div> <!-- end stats container -->
+
+<!--     <div class="container playerBtn"><!-- games controls --
+        <div class="row">
+            <div class="col-xs-6 col-md-6"> -->
+            <div class="playerBtn">
+                <button id="gameReset" type="button"><i class="fa fa-handshake-o" aria-hidden="true"></i> Get Guessing</button>
+            </div>
+<!--             <div class="col-xs-6 col-md-6">
+                <button id="gameReset" type="reset" value="Reset"><i class="fa fa-refresh" aria-hidden="true"></i> Try again</button>
+            </div> -->
+        </div>
+    </div>
+    </body>
+
+<!--    <script src="https://use.fontawesome.com/deca8cd297.js"></script>. -->
+    <script type="text/javascript" src="./assets/main.js">
+
+
+
+
+
+    </script>
+</body>
+
+</html>
