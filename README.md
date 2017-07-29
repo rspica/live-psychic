@@ -1,9 +1,9 @@
 # live-psychic
 This is a guessing game; guess the letter the psychic is thinking
 
-##### The survey page:
+##### The Psychic:
 
-<img width="815" alt="Friend Finder home page" src="https://github.com/rspica/live-psychic/images/giphy.gif">
+<img width="300" alt="crystalBall" src="https://github.com/rspica/live-psychic/blob/master/images/giphy.gif">
 
 
 
